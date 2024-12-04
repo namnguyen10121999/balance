@@ -1,0 +1,160 @@
+body{
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+.mat-select-panel {
+  max-height: 300px !important; /* Đảm bảo chiều cao tối đa cho dropdown */
+  overflow-y: auto !important;  /* Cho phép thanh cuộn trong dropdown */
+  padding: 0;  /* Bỏ khoảng cách padding nếu có */
+  z-index: 10000 !important; /* Đảm bảo dropdown nằm trên các phần tử khác */
+  background-color: #f5f5f5; /* Màu nền của dropdown */
+  border: 1px solid #ccc; /* Viền nhẹ cho dropdown */
+}
+
+/* Đảm bảo không bị che khi hiển thị thanh cuộn */
+.mat-option {
+  padding: 10px !important;  /* Đảm bảo mỗi item có đủ khoảng cách */
+  word-wrap: break-word;     /* Giúp chữ không bị cắt khi dài */
+  white-space: normal !important; /* Cho phép chữ xuống dòng nếu quá dài */
+  display: block;
+  background-color: #fff; /* Màu nền của các mục trong dropdown */
+  color: #333; /* Màu chữ */
+}
+
+.mat-option:hover {
+  background-color: #e0e0e0; /* Màu nền khi hover qua mục */
+}
+
+.mat-form-field {
+  position: relative; /* Đảm bảo rằng dropdown có thể mở ra */
+}
+
+/* Đảm bảo dropdown hiển thị đúng chữ mà không bị che */
+.mat-select-trigger {
+  align-items: center;
+  display: flex; /* Đảm bảo các phần tử bên trong trigger căn chỉnh đúng */
+  justify-content: space-between; /* Đảm bảo khoảng cách giữa label và icon */
+  padding: 8px;
+  background-color: #f9f9f9; /* Màu nền của trigger */
+  border: 1px solid #ccc; /* Viền nhẹ cho trigger */
+  color: #333; /* Màu chữ */
+}
+
+/* Cải thiện hiển thị các lựa chọn */
+.mat-select-placeholder,
+.mat-select-value {
+  font-size: 14px;  /* Tùy chỉnh kích thước font */
+  color: rgba(0, 0, 0, 0.6); /* Màu chữ */
+  font-weight: 400;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: #f9f9f9;
+  border-radius: 4px;
+  padding: 5px; /* Đảm bảo các phần tử không bị quá sát nhau */
+}
+
+/* Cải thiện scrollbar của dropdown */
+.mat-select-panel::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.mat-select-panel::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+
+/* Bổ sung thêm khoảng cách cho các mục để tránh bị che */
+.search-container {
+  position: absolute;
+  right: 20px; /* Di chuyển thanh tìm kiếm cách bên phải 20px */
+  top: 20px;  /* Di chuyển thanh tìm kiếm cách trên 20px */
+  width: 300px; /* Đặt chiều rộng thanh tìm kiếm */
+  background-color: #ffffff; /* Nền trắng cho thanh tìm kiếm */
+  padding: 10px; /* Thêm padding cho thanh tìm kiếm */
+  border-radius: 4px; /* Bo góc cho thanh tìm kiếm */
+  z-index: 10001; /* Đảm bảo thanh tìm kiếm nằm trên dropdown */
+}
+
+/* Đảm bảo dropdown panel hiển thị đúng vị trí */
+.dropdown-panel {
+  position: absolute !important;  /* Force absolute positioning */
+  top: 100% !important; /* Dropdown appears below the select box */
+  left: 0 !important; /* Align dropdown with the left side of the select */
+  z-index: 9999; /* Ensure dropdown stays on top of other content */
+  max-height: 200px;
+  overflow: auto;
+}
+
+/* Cải thiện hiển thị bảng */
+.table {
+  overflow-x: auto;
+  background-color: #ffffff; /* Nền bảng */
+  color: #000; /* Màu chữ đen */
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.table th{
+  color: #42526E !important;
+  font-weight: bold;
+}
+
+.table a{
+  text-decoration: none;
+}
+
+.table td,
+.table th {
+  text-align: center;
+  padding: 8px; /* Thêm padding cho các ô trong bảng */
+  border: 1px solid #e0e0e0; /* Viền nhẹ cho bảng */
+  color: #000; /* Màu chữ đen */
+}
+
+.table tr:nth-child(odd) {
+  background-color: #fafafa; /* Nền xen kẽ cho các hàng */
+}
+
+.mat-paginator {
+  flex: 1; /* Tạo không gian linh hoạt cho paginator */
+  display: flex;
+  align-items: center; 
+  justify-content: space-between;
+}
+
+.paginator-container{
+  display: flex; 
+  align-items: center; /* Căn giữa theo chiều dọc */
+  justify-content: space-between; /* Tạo khoảng cách giữa các phần tử */
+  padding: 10px; 
+  background-color: #f9f9f9; 
+}
+
+.total-members {
+  font-size: 14px; 
+  color: #000; 
+  margin-left: 20px; 
+}
+
+.mat-paginator .mat-form-field {
+  margin-right: 20px; /* Thêm khoảng cách giữa phần chọn số lượng items và các nút phân trang */
+}
+
+.search-box{
+  position: absolute;
+  right: 20px; /* Di chuyển thanh tìm kiếm cách bên phải 20px */
+  top: 20px;  /* Di chuyển thanh tìm kiếm cách trên 20px */
+  width: 300px; /* Đặt chiều rộng thanh tìm kiếm */
+  background-color: #ffffff; /* Nền trắng cho thanh tìm kiếm */
+  padding: 10px; /* Thêm padding cho thanh tìm kiếm */
+  border-radius: 4px; /* Bo góc cho thanh tìm kiếm */
+}
+
+.filter-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}

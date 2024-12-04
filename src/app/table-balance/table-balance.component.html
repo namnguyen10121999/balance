@@ -1,0 +1,109 @@
+<div class="filter-container">
+  <!-- Dropdown for selecting filter type -->
+  <mat-form-field appearance="fill" class="custom-form-field">
+    <mat-label>Filter by</mat-label>
+    <mat-select [(ngModel)]="selectedFilter" (selectionChange)="onFilterChange()">
+      <mat-option *ngFor="let filter of filterOptions" [value]="filter">{{ filter }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  
+  <input matInput (input)="applySearch($event)" placeholder="Search" class="search-box"/>
+
+  <mat-form-field appearance="fill" *ngIf="selectedFilter && selectedFilter !== 'YEAR'" class="custom-form-field">
+    <mat-label>Select {{ selectedFilter }}</mat-label>
+    <mat-select (selectionChange)="applyCombinedFilter($event)">
+      <mat-option *ngFor="let option of getFilterOptions(selectedFilter)" [value]="option">
+        {{ option }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  
+  <mat-form-field appearance="fill" *ngIf="selectedFilter === 'YEAR'" class="custom-form-field">
+    <mat-label>Select Year</mat-label>
+    <mat-select (selectionChange)="applyTeamFilter($event)">
+      <mat-option *ngFor="let year of years" [value]="year">{{ year }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<!-- Table displaying the members -->
+ <div class="table-container">
+  <table mat-table [dataSource]="datasource" matSort (matSortChange)="sortData($event)">
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Employee</th>
+      <td mat-cell *matCellDef="let member" class="td">
+        <a [href]="'/path-to-profile/' + member.name">{{ member.name }}</a>
+      </td>
+    </ng-container>
+  
+    <!-- Role Column -->
+    <ng-container matColumnDef="role">
+      <th mat-header-cell *matHeaderCellDef>Role</th>
+      <td mat-cell *matCellDef="let member" class="td">{{ member.role }}</td>
+    </ng-container>
+  
+    <!-- Year Column -->
+    <ng-container matColumnDef="year">
+      <th mat-header-cell *matHeaderCellDef>Effective Year</th>
+      <td mat-cell *matCellDef="let member" class="td">{{ member.year }}</td>
+    </ng-container>
+  
+    <!-- Additional Columns -->
+    <ng-container matColumnDef="wfh">
+      <th mat-header-cell *matHeaderCellDef>WFH</th>
+      <td mat-cell *matCellDef="let member" class="td">{{ member.wfh }}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="intleave">
+      <th mat-header-cell *matHeaderCellDef>Internal Leave</th>
+      <td mat-cell *matCellDef="let member" class="td">{{ member.intleave }}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="intWFH">
+      <th mat-header-cell *matHeaderCellDef>Internal WFH</th>
+      <td mat-cell *matCellDef="let member" class="td">{{ member.intWFH }}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="anleave">
+      <th mat-header-cell *matHeaderCellDef>Annual Leave</th>
+      <td mat-cell *matCellDef="let member" class="td">{{ member.anleave }}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="matleave">
+      <th mat-header-cell *matHeaderCellDef>Maternity Leave</th>
+      <td mat-cell *matCellDef="let member" class="td">{{ member.matleave }}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="wedding">
+      <th mat-header-cell *matHeaderCellDef>Wedding Leave</th>
+      <td mat-cell *matCellDef="let member" class="td">{{ member.wedding }}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="berleave">
+      <th mat-header-cell *matHeaderCellDef>Bereavement Leave</th>
+      <td mat-cell *matCellDef="let member" class="td">{{ member.berleave }}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="materleave">
+      <th mat-header-cell *matHeaderCellDef>Maternity Extended Leave</th>
+      <td mat-cell *matCellDef="let member" class="td">{{ member.materleave }}</td>
+    </ng-container>
+  
+    <!-- Header & Row -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+ </div>
+<!-- Pagination -->
+<div class="paginator-container">
+  <div class="total-members">Total Members: {{ totalMembers }}</div>
+  <mat-paginator [length]="datasource.filteredData.length"
+               [pageSize]="10"
+               [pageSizeOptions]="[5, 10, 20]"
+               [showFirstLastButtons]="showFirstLastButtons"
+               (page)="onPageChange($event)">
+</mat-paginator>
+</div>
+<!-- Pagination -->
+
