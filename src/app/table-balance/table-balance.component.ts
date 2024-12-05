@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from '../app.component';
 import { MatIconModule } from '@angular/material/icon';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 export interface Member {
   name: string;
@@ -26,7 +27,7 @@ export interface Member {
 @Component({
   selector: 'app-table-balance',
   standalone: true,
-  imports: [NgFor,MatTableModule, MatPaginatorModule,MatSelectModule, MatFormFieldModule,MatSortModule,MatIconModule, FormsModule,CommonModule],
+  imports: [NgFor,MatTableModule, MatPaginatorModule,MatSelectModule, MatFormFieldModule,MatSortModule,MatIconModule,DragDropModule, FormsModule,CommonModule],
   templateUrl: './table-balance.component.html',
   styleUrl: './table-balance.component.css'
 })
@@ -69,6 +70,7 @@ export class TableBalanceComponent implements OnInit, AfterViewInit {
     { name: 'To Nhu', role: 'QA' , year: 2024, wfh: 10 , intleave: 180,intWFH: 144, anleave: 115, matleave: 0, wedding: 0, berleave: 0, materleave: 7},
   ]);
 
+  
   toggleSortOrder() {
     if (this.sortDirection === 'none' || this.sortDirection === 'desc') {
       this.sortDirection = 'asc';  // Đổi thành sắp xếp tăng dần
@@ -128,16 +130,15 @@ export class TableBalanceComponent implements OnInit, AfterViewInit {
   sortData(sort: Sort): void{
     const data = this.datasource.data.slice();
     if (!sort.active || sort.direction === '') {
-      return;  // Nếu không có hướng sắp xếp, không làm gì cả
+      return;  
     }
-
-    // Kiểm tra nếu đang sắp xếp theo cột đã chọn và hướng sắp xếp là desc, chuyển sang none
+    
     if (sort.direction === 'asc') {
       this.datasource.data = data.sort((a, b) => this.compare(a.name, b.name, true));
     } else if (sort.direction === 'desc') {
       this.datasource.data = data.sort((a, b) => this.compare(a.name, b.name, false));
     } else {
-      this.datasource.data = data;  // Trả về trạng thái ban đầu nếu không sắp xếp
+      this.datasource.data = data; 
     }
   }
   compare(a: string | number, b: string | number, isAsc: boolean): number {
@@ -215,7 +216,6 @@ export class TableBalanceComponent implements OnInit, AfterViewInit {
     }
   }
 
-  // Lấy tổng số thành viên trong danh sách
   get totalMembers(): number { 
     return this.datasource.filteredData.length;
   }

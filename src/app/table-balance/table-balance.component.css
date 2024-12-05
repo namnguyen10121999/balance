@@ -6,7 +6,7 @@ body{
 .mat-select-panel {
   max-height: 300px !important; /* Đảm bảo chiều cao tối đa cho dropdown */
   overflow-y: auto !important;  /* Cho phép thanh cuộn trong dropdown */
-  padding: 0;  /* Bỏ khoảng cách padding nếu có */
+  padding: 0;
   z-index: 10000 !important; /* Đảm bảo dropdown nằm trên các phần tử khác */
   background-color: #f5f5f5; /* Màu nền của dropdown */
   border: 1px solid #ccc; /* Viền nhẹ cho dropdown */
@@ -38,14 +38,14 @@ body{
   padding: 8px;
   background-color: #f9f9f9; /* Màu nền của trigger */
   border: 1px solid #ccc; /* Viền nhẹ cho trigger */
-  color: #333; /* Màu chữ */
+  color: #333; 
 }
 
 /* Cải thiện hiển thị các lựa chọn */
 .mat-select-placeholder,
 .mat-select-value {
-  font-size: 14px;  /* Tùy chỉnh kích thước font */
-  color: rgba(0, 0, 0, 0.6); /* Màu chữ */
+  font-size: 14px; 
+  color: rgba(0, 0, 0, 0.6);
   font-weight: 400;
 }
 
@@ -66,18 +66,6 @@ body{
   border-radius: 4px;
 }
 
-/* Bổ sung thêm khoảng cách cho các mục để tránh bị che */
-.search-container {
-  position: absolute;
-  right: 20px; /* Di chuyển thanh tìm kiếm cách bên phải 20px */
-  top: 20px;  /* Di chuyển thanh tìm kiếm cách trên 20px */
-  width: 300px; /* Đặt chiều rộng thanh tìm kiếm */
-  background-color: #ffffff; /* Nền trắng cho thanh tìm kiếm */
-  padding: 10px; /* Thêm padding cho thanh tìm kiếm */
-  border-radius: 4px; /* Bo góc cho thanh tìm kiếm */
-  z-index: 10001; /* Đảm bảo thanh tìm kiếm nằm trên dropdown */
-}
-
 /* Đảm bảo dropdown panel hiển thị đúng vị trí */
 .dropdown-panel {
   position: absolute !important;  /* Force absolute positioning */
@@ -89,7 +77,7 @@ body{
 }
 
 /* Cải thiện hiển thị bảng */
-.table {
+.table-container {
   overflow-x: auto;
   background-color: #ffffff; /* Nền bảng */
   color: #000; /* Màu chữ đen */
@@ -97,13 +85,37 @@ body{
   border-collapse: collapse;
 }
 
-.table th{
-  color: #42526E !important;
+.class-header,.employee-th{
+  color: #42526E;
   font-weight: bold;
+  white-space: nowrap;
 }
 
 .table a{
   text-decoration: none;
+}
+
+.employee-td{
+  padding: 8px;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.table-container{
+  display: block;
+  overflow: auto;
+}
+
+.employee-th,.employee-td{
+  position: sticky; /* Giữ vị trí cố định khi cuộn */
+  left: 0; 
+  z-index: 2; 
+  background-color: white; 
+  box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1); 
+}
+
+.mat-header-row,.class-header{
+  z-index: 3;
 }
 
 .table td,
@@ -116,6 +128,21 @@ body{
 
 .table tr:nth-child(odd) {
   background-color: #fafafa; /* Nền xen kẽ cho các hàng */
+}
+
+.resize-handle {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 10px;
+  height: 100%;
+  cursor: ew-resize;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* When the column is being dragged, change the cursor */
+th.resize-dragging {
+  cursor: ew-resize;
 }
 
 .mat-paginator {
@@ -142,19 +169,46 @@ body{
 .mat-paginator .mat-form-field {
   margin-right: 20px; /* Thêm khoảng cách giữa phần chọn số lượng items và các nút phân trang */
 }
-
-.search-box{
-  position: absolute;
-  right: 20px; /* Di chuyển thanh tìm kiếm cách bên phải 20px */
-  top: 20px;  /* Di chuyển thanh tìm kiếm cách trên 20px */
-  width: 300px; /* Đặt chiều rộng thanh tìm kiếm */
-  background-color: #ffffff; /* Nền trắng cho thanh tìm kiếm */
-  padding: 10px; /* Thêm padding cho thanh tìm kiếm */
-  border-radius: 4px; /* Bo góc cho thanh tìm kiếm */
-}
-
 .filter-container {
   display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
+  margin-top: 18px;
+  margin-bottom: 10px;
+}
+
+.search-container-alt {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  width: 220px;
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
+}
+
+.search-input-alt {
+  flex: 1; 
+  border: #333;
+  padding: 8px; 
+  font-size: 14px; 
+  outline: none; /* Loại bỏ viền khi focus */
+}
+
+.search-input-alt::placeholder {
+  color: #999; 
+}
+
+.search-icon-alt {
+  line-height: 1; 
+  vertical-align: middle; 
+  cursor: pointer; 
+}
+
+.employee-avatar {
+  width: 30px; /* Kích thước ảnh đại diện */
+  height: 30px; /* Đảm bảo ảnh là hình tròn */
+  border-radius: 50%; /* Bo tròn ảnh */
+  margin-right: 10px; /* Khoảng cách giữa ảnh và tên */
 }

@@ -7,7 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, TableBalanceComponent],
+  imports: [TableBalanceComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })

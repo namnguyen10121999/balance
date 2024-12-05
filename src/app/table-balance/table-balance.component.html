@@ -7,7 +7,15 @@
     </mat-select>
   </mat-form-field>
   
-  <input matInput (input)="applySearch($event)" placeholder="Search" class="search-box"/>
+  <div class="search-container-alt">
+    <input 
+      type="text" 
+      placeholder="Search" 
+      class="search-input-alt" 
+      (input)="applySearch($event)" 
+    />
+    <span class="material-icons search-icon-alt">search</span>
+  </div>
 
   <mat-form-field appearance="fill" *ngIf="selectedFilter && selectedFilter !== 'YEAR'" class="custom-form-field">
     <mat-label>Select {{ selectedFilter }}</mat-label>
@@ -31,62 +39,63 @@
   <table mat-table [dataSource]="datasource" matSort (matSortChange)="sortData($event)">
     <!-- Name Column -->
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Employee</th>
-      <td mat-cell *matCellDef="let member" class="td">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="employee-th">Employee</th>
+      <td mat-cell *matCellDef="let member" class="employee-td">
+        <img src="Cat.jpg" class="employee-avatar">
         <a [href]="'/path-to-profile/' + member.name">{{ member.name }}</a>
       </td>
     </ng-container>
   
     <!-- Role Column -->
     <ng-container matColumnDef="role">
-      <th mat-header-cell *matHeaderCellDef>Role</th>
+      <th mat-header-cell *matHeaderCellDef class="class-header">Role</th>
       <td mat-cell *matCellDef="let member" class="td">{{ member.role }}</td>
     </ng-container>
   
     <!-- Year Column -->
     <ng-container matColumnDef="year">
-      <th mat-header-cell *matHeaderCellDef>Effective Year</th>
+      <th mat-header-cell *matHeaderCellDef class="class-header">Effective Year</th>
       <td mat-cell *matCellDef="let member" class="td">{{ member.year }}</td>
     </ng-container>
   
     <!-- Additional Columns -->
     <ng-container matColumnDef="wfh">
-      <th mat-header-cell *matHeaderCellDef>WFH</th>
+      <th mat-header-cell *matHeaderCellDef class="class-header">WFH</th>
       <td mat-cell *matCellDef="let member" class="td">{{ member.wfh }}</td>
     </ng-container>
   
     <ng-container matColumnDef="intleave">
-      <th mat-header-cell *matHeaderCellDef>Internal Leave</th>
+      <th mat-header-cell *matHeaderCellDef class="class-header">Internal Leave</th>
       <td mat-cell *matCellDef="let member" class="td">{{ member.intleave }}</td>
     </ng-container>
   
     <ng-container matColumnDef="intWFH">
-      <th mat-header-cell *matHeaderCellDef>Internal WFH</th>
+      <th mat-header-cell *matHeaderCellDef class="class-header">Internal WFH</th>
       <td mat-cell *matCellDef="let member" class="td">{{ member.intWFH }}</td>
     </ng-container>
   
     <ng-container matColumnDef="anleave">
-      <th mat-header-cell *matHeaderCellDef>Annual Leave</th>
+      <th mat-header-cell *matHeaderCellDef class="class-header">Annual Leave</th>
       <td mat-cell *matCellDef="let member" class="td">{{ member.anleave }}</td>
     </ng-container>
   
-    <ng-container matColumnDef="matleave">
-      <th mat-header-cell *matHeaderCellDef>Maternity Leave</th>
+    <ng-container matColumnDef="matleave" >
+      <th mat-header-cell *matHeaderCellDef class="class-header">Maternity Leave</th>
       <td mat-cell *matCellDef="let member" class="td">{{ member.matleave }}</td>
     </ng-container>
   
     <ng-container matColumnDef="wedding">
-      <th mat-header-cell *matHeaderCellDef>Wedding Leave</th>
+      <th mat-header-cell *matHeaderCellDef class="class-header">Wedding Leave</th>
       <td mat-cell *matCellDef="let member" class="td">{{ member.wedding }}</td>
     </ng-container>
   
     <ng-container matColumnDef="berleave">
-      <th mat-header-cell *matHeaderCellDef>Bereavement Leave</th>
+      <th mat-header-cell *matHeaderCellDef class="class-header">Bereavement Leave</th>
       <td mat-cell *matCellDef="let member" class="td">{{ member.berleave }}</td>
     </ng-container>
   
     <ng-container matColumnDef="materleave">
-      <th mat-header-cell *matHeaderCellDef>Maternity Extended Leave</th>
+      <th mat-header-cell *matHeaderCellDef class="class-header">Maternity Extended Leave</th>
       <td mat-cell *matCellDef="let member" class="td">{{ member.materleave }}</td>
     </ng-container>
   
