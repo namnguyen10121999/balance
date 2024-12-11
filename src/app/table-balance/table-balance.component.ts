@@ -50,20 +50,20 @@ export class TableBalanceComponent implements OnInit, AfterViewInit {
   datasource = new MatTableDataSource<Member>([
     { name: 'Nam Nguyen', role: 'User', year: 2024, wfh: 21.5, intleave: 180, intWFH: 144, anleave: 144, matleave: 0, wedding: 0, berleave: 0, materleave: 7 },
     { name: 'Bao Nguyen', role: 'Admin', year: 2019, wfh: 10 , intleave: 180,intWFH: 144, anleave: 144, matleave: 0, wedding: 0, berleave: 0, materleave: 7},
-    { name: 'Tung Thanh', role: 'Document Writer' , year: 2019, wfh: 15 , intleave: 180,intWFH: 144, anleave: 141, matleave: 0, wedding: 0, berleave: 0, materleave: 7},
+    { name: 'Tung Thanh', role: 'QA' , year: 2019, wfh: 15 , intleave: 180,intWFH: 144, anleave: 141, matleave: 0, wedding: 0, berleave: 0, materleave: 7},
     { name: 'Sang Tran', role: 'Leader' , year: 2022, wfh: 21.5 , intleave: 180,intWFH: 144, anleave: 144, matleave: 0, wedding: 0, berleave: 0, materleave: 7},
     { name: 'Bao Uyen', role: 'User' , year: 2023, wfh: 24 , intleave: 180,intWFH: 144, anleave: 144, matleave: 0, wedding: 0, berleave: 0, materleave: 7},
     { name: 'Minh Khai', role: 'User' , year: 2025, wfh: 18 , intleave: 180,intWFH: 144, anleave: 144, matleave: 0, wedding: 0, berleave: 0, materleave: 7},
     { name: 'Thanh Truc', role: 'User' , year: 2024, wfh: 24 , intleave: 180,intWFH: 144, anleave: 144, matleave: 0, wedding: 0, berleave: 0, materleave: 7},
     { name: 'Minh Khoi', role: 'Leader' , year: 2024, wfh: 14 , intleave: 180,intWFH: 144, anleave: 144, matleave: 0, wedding: 0, berleave: 0, materleave: 7},
     { name: 'Thu Le', role: 'User' , year: 2024, wfh: 19 , intleave: 180,intWFH: 144, anleave: 144, matleave: 0, wedding: 0, berleave: 0, materleave: 7},
-    { name: 'Huyen Nguyen', role: 'Super Admin' , year: 2022, wfh: 20 , intleave: 180,intWFH: 144, anleave: 144, matleave: 0, wedding: 0, berleave: 0, materleave: 7},
+    { name: 'Huyen Thu', role: 'Super Admin' , year: 2022, wfh: 20 , intleave: 180,intWFH: 144, anleave: 144, matleave: 0, wedding: 0, berleave: 0, materleave: 7},
     { name: 'Long Tran', role: 'User' , year: 2024, wfh: 30 , intleave: 180,intWFH: 144, anleave: 144, matleave: 0, wedding: 0, berleave: 0, materleave: 7},
     { name: 'Duc Nguyen', role: 'User' , year: 2024, wfh: 10 , intleave: 180,intWFH: 144, anleave: 144, matleave: 0, wedding: 0, berleave: 0, materleave: 7},
-    { name: 'Hoang Khang', role: 'PM' , year: 2023, wfh: 9.5 , intleave: 180,intWFH: 144, anleave: 144, matleave: 0, wedding: 0, berleave: 0, materleave: 7},
+    { name: 'Hoan Khang', role: 'PM' , year: 2023, wfh: 9.5 , intleave: 180,intWFH: 144, anleave: 144, matleave: 0, wedding: 0, berleave: 0, materleave: 7},
     { name: 'Sang Le', role: 'User' , year: 2024, wfh: 1.5 , intleave: 180,intWFH: 144, anleave: 144, matleave: 0, wedding: 0, berleave: 0, materleave: 7},
     { name: 'Nhat Nguyen', role: 'User' , year: 2024, wfh: 16 , intleave: 180,intWFH: 144, anleave: 144, matleave: 0, wedding: 0, berleave: 0, materleave: 7},
-    { name: 'Nam Tran', role: 'Document Writer' , year: 2023, wfh: 14 , intleave: 180,intWFH: 144, anleave: 144, matleave: 0, wedding: 0, berleave: 0, materleave: 7},
+    { name: 'Nam Tran', role: 'Super Admin' , year: 2023, wfh: 14 , intleave: 180,intWFH: 144, anleave: 144, matleave: 0, wedding: 0, berleave: 0, materleave: 7},
     { name: 'Tung Tran', role: 'User' , year: 2024, wfh: 3 , intleave: 180,intWFH: 144, anleave: 144, matleave: 0, wedding: 0, berleave: 0, materleave: 7},
     { name: 'Bao Le', role: 'Super Admin' , year: 2024, wfh: 17 , intleave: 180,intWFH: 144, anleave: 144, matleave: 0, wedding: 0, berleave: 0, materleave: 7},
     { name: 'Quang Le', role: 'User' , year: 2024, wfh: 40 , intleave: 180,intWFH: 144, anleave: 144, matleave: 0, wedding: 0, berleave: 0, materleave: 7},
@@ -202,8 +202,8 @@ export class TableBalanceComponent implements OnInit, AfterViewInit {
 
   updatePaginatedMembers(): void {
     const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
-  const endIndex = startIndex + this.paginator.pageSize;
-  this.paginatedMembers = this.datasource.filteredData.slice(startIndex, endIndex);
+    const endIndex = startIndex + this.paginator.pageSize;
+    this.paginatedMembers = this.datasource.filteredData.slice(startIndex, endIndex);
   }
 
   applyCombinedFilter(event: MatSelectChange): void {
